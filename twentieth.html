@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Picnic Date With Me 🌻</title>
+  <link rel="stylesheet" href="twentieth.css">
+</head>
+<body>
+
+  <!-- ============================================================
+       PAGE 1 — PASSWORD
+       Background image: bg-password.jpg
+       ============================================================ -->
+  <div class="section active fade-in" id="page-password">
+    <div class="pw-bg"></div>
+    <div class="passcode-ui">
+      <div class="pw-label">Enter a passcode</div>
+      <div class="pw-dots">
+        <div class="dot" id="d0"></div>
+        <div class="dot" id="d1"></div>
+        <div class="dot" id="d2"></div>
+        <div class="dot" id="d3"></div>
+      </div>
+      <div class="keypad">
+        <div class="key" data-k="1">1</div>
+        <div class="key" data-k="2">2</div>
+        <div class="key" data-k="3">3</div>
+        <div class="key" data-k="4">4</div>
+        <div class="key" data-k="5">5</div>
+        <div class="key" data-k="6">6</div>
+        <div class="key" data-k="7">7</div>
+        <div class="key" data-k="8">8</div>
+        <div class="key" data-k="9">9</div>
+        <div class="key" data-k="*">*</div>
+        <div class="key" data-k="0">0</div>
+        <div class="key" data-k="#">#</div>
+      </div>
+      <div class="err-msg" id="err-msg"></div>
+    </div>
+  </div>
+
+  <!-- ============================================================
+       PAGE 2 — HUB (PICNIC BASKET)
+       Background image: bg-hub.jpg
+       Hub item images: cassette.png, hub-flowers.png,
+                        hub-envelope.png, hub-camera.png
+       ============================================================ -->
+  <div class="section" id="page-hub">
+    <div class="hub-bg"></div>
+    <div class="hub-overlay"></div>
+
+    <div class="hub-options">
+
+      <div class="hub-item" id="opt-cassette" onclick="showSection('page-song')" title="Our Song ♪">
+        <img src="cassette.png" alt="Our Song">
+        <div class="hub-item-caption">Our Song</div>
+      </div>
+
+      <div class="hub-item" id="opt-flowers" onclick="showSection('page-love')" title="Why I Love You 🌻">
+        <img src="sunflower.png" alt="Why I Love You">
+        <div class="hub-item-caption">Why I Love You</div>
+      </div>
+
+      <div class="hub-item" id="opt-envelope" onclick="showSection('page-envelope')" title="Letter 💌">
+        <img src="envelopee.png" alt="A Letter For You">
+        <div class="hub-item-caption">A Letter For You</div>
+      </div>
+
+      <div class="hub-item" id="opt-camera" onclick="showSection('page-corkboard')" title="Our Memories 📷">
+        <img src="cameraa.png" alt="Our Memories">
+        <div class="hub-item-caption">Our Memories</div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- PAGE 3 — SONG -->
+  <div class="section" id="page-song">
+    <div class="song-bg"></div>
+    <div class="song-overlay"></div>
+
+    <div class="song-content">
+
+      <!-- Heading centered at top -->
+      <div class="song-title">Song that reminds me of you ♪</div>
+
+      <div class="song-row">
+
+        <!-- Vinyl record — now inside the row, left of YouTube -->
+        <img src="vinyl.png" alt="vinyl" class="song-vinyl">
+
+        <!-- YouTube embed -->
+        <div class="yt-wrap">
+          <div id="yt-fallback" class="yt-fallback" onclick="openYT()">
+            <div class="play-btn">
+              <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+            </div>
+            <p>
+              Panalangin<br>
+              Apo Hiking Society<br>
+              <small>Click to open on YouTube</small>
+            </p>
+          </div>
+          <div id="yt-player" style="display:none"></div>
+        </div>
+
+        <!-- Polaroids — scattered to the right -->
+        <div class="polaroid-col">
+          <div class="polaroid polaroid--1">
+           <img src="songpic1.jpg" alt="">
+          </div>
+          <div class="polaroid polaroid--2">
+           <img src="songpic2.jpg" alt="">
+          </div>
+        </div>
+
+      </div>
+    </div>
+    <button class="back-btn" onclick="goHub()">← Back</button>
+  </div>
+  <!-- ============================================================
+       PAGE 4 — LOVE REASONS (Flowers / Heart Locket)
+       Background image: bg-love.jpg (grass + picnic blanket)
+       Locket photos: love-pol-1.jpg, love-pol-2.jpg
+       ============================================================ -->
+  <div class="section" id="page-love">
+    <div class="love-bg"></div>
+
+    <div class="love-content">
+
+      <h2 class="love-heading">Things I love about you ♡</h2>
+
+      <div class="love-locket-row">
+
+        <!-- Left reason cards -->
+        <div class="love-reasons love-reasons--left">
+          <div class="love-card">I love the way you listen to me, even when I ramble.</div>
+          <div class="love-card">I love how supportive you are of my dreams.</div>
+          <div class="love-card">I love how caring you are, even in small ways.</div>
+        </div>
+
+<!-- Heart locket center -->
+<div class="love-locket">
+  <div class="locket-chain"></div>
+  <img src="locketheart.png" alt="Heart Locket" class="locket-img">
+</div>
+
+        <!-- Right reason cards -->
+        <div class="love-reasons love-reasons--right">
+          <div class="love-card">I love how you make me feel safe without even trying.</div>
+          <div class="love-card">I love the memories we create together.</div>
+          <div class="love-card">I love you simply because you're you.</div>
+        </div>
+
+      </div>
+
+    </div>
+    <button class="back-btn" onclick="goHub()">← Back</button>
+  </div>
+
+  <!-- ============================================================
+       PAGE 5a — ENVELOPE (closed)
+       Background image: bg-envelope.jpg
+       ============================================================ -->
+ <div class="section" id="page-envelope">
+  <div class="env-bg"></div>
+  <div class="env-envelope-wrap">
+    <img src="letterenv.png" alt="Envelope" class="env-envelope" onclick="openLetter()">
+  </div>
+  <div class="env-hint">Click the envelope to open 💌</div>
+  <button class="back-btn" onclick="goHub()">← Back</button>
+</div>
+  <!-- ============================================================
+       PAGE 5b — LETTER (open / scrollable)
+       Background image: bg-letter.jpg
+       Polaroid images: photo-letter-1.jpg, photo-letter-2.jpg, photo-letter-3.jpg
+       ============================================================ -->
+  <div class="section" id="page-letter">
+  <div class="letter-outer">
+
+    <!-- Scattered background petals -->
+    <div class="letter-petals" aria-hidden="true">
+      <span class="petal p1">🌸</span>
+      <span class="petal p2">🌹</span>
+      <span class="petal p3">🌸</span>
+      <span class="petal p4">🌺</span>
+      <span class="petal p5">🌸</span>
+      <span class="petal p6">🌹</span>
+      <span class="petal p7">🌸</span>
+      <span class="petal p8">🌺</span>
+      <span class="petal p9">🌸</span>
+      <span class="petal p10">🌹</span>
+    </div>
+
+    <div class="letter-scroll">
+      <div class="letter-card">
+
+        <!-- Floral corners (SVG) -->
+        <svg class="letter-corner letter-corner--tl" viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg">
+          <g opacity="0.55">
+            <circle cx="10" cy="10" r="6" fill="#c0392b"/>
+            <circle cx="22" cy="8"  r="4" fill="#e74c3c"/>
+            <circle cx="8"  cy="22" r="4" fill="#e74c3c"/>
+            <circle cx="30" cy="14" r="3" fill="#922b21"/>
+            <circle cx="14" cy="30" r="3" fill="#922b21"/>
+            <ellipse cx="18" cy="18" rx="5" ry="3" fill="#f1948a" transform="rotate(-45 18 18)"/>
+            <line x1="6" y1="6" x2="36" y2="36" stroke="#7b241c" stroke-width="1" opacity="0.4"/>
+            <circle cx="36" cy="36" r="2" fill="#c0392b"/>
+            <!-- leaves -->
+            <ellipse cx="24" cy="6"  rx="6" ry="2.5" fill="#1e8449" transform="rotate(-30 24 6)"  opacity="0.7"/>
+            <ellipse cx="6"  cy="24" rx="6" ry="2.5" fill="#1e8449" transform="rotate(-60 6 24)"   opacity="0.7"/>
+          </g>
+        </svg>
+
+        <svg class="letter-corner letter-corner--tr" viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg">
+          <g opacity="0.55">
+            <circle cx="70" cy="10" r="6" fill="#c0392b"/>
+            <circle cx="58" cy="8"  r="4" fill="#e74c3c"/>
+            <circle cx="72" cy="22" r="4" fill="#e74c3c"/>
+            <circle cx="50" cy="14" r="3" fill="#922b21"/>
+            <circle cx="66" cy="30" r="3" fill="#922b21"/>
+            <ellipse cx="62" cy="18" rx="5" ry="3" fill="#f1948a" transform="rotate(45 62 18)"/>
+            <line x1="74" y1="6" x2="44" y2="36" stroke="#7b241c" stroke-width="1" opacity="0.4"/>
+            <circle cx="44" cy="36" r="2" fill="#c0392b"/>
+            <ellipse cx="56" cy="6"  rx="6" ry="2.5" fill="#1e8449" transform="rotate(30 56 6)"   opacity="0.7"/>
+            <ellipse cx="74" cy="24" rx="6" ry="2.5" fill="#1e8449" transform="rotate(60 74 24)"  opacity="0.7"/>
+          </g>
+        </svg>
+
+        <svg class="letter-corner letter-corner--bl" viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg">
+          <g opacity="0.55">
+            <circle cx="10" cy="70" r="6" fill="#c0392b"/>
+            <circle cx="22" cy="72" r="4" fill="#e74c3c"/>
+            <circle cx="8"  cy="58" r="4" fill="#e74c3c"/>
+            <circle cx="30" cy="66" r="3" fill="#922b21"/>
+            <circle cx="14" cy="50" r="3" fill="#922b21"/>
+            <ellipse cx="18" cy="62" rx="5" ry="3" fill="#f1948a" transform="rotate(45 18 62)"/>
+            <line x1="6" y1="74" x2="36" y2="44" stroke="#7b241c" stroke-width="1" opacity="0.4"/>
+            <circle cx="36" cy="44" r="2" fill="#c0392b"/>
+            <ellipse cx="24" cy="74" rx="6" ry="2.5" fill="#1e8449" transform="rotate(30 24 74)"  opacity="0.7"/>
+            <ellipse cx="6"  cy="56" rx="6" ry="2.5" fill="#1e8449" transform="rotate(60 6 56)"   opacity="0.7"/>
+          </g>
+        </svg>
+
+        <svg class="letter-corner letter-corner--br" viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg">
+          <g opacity="0.55">
+            <circle cx="70" cy="70" r="6" fill="#c0392b"/>
+            <circle cx="58" cy="72" r="4" fill="#e74c3c"/>
+            <circle cx="72" cy="58" r="4" fill="#e74c3c"/>
+            <circle cx="50" cy="66" r="3" fill="#922b21"/>
+            <circle cx="66" cy="50" r="3" fill="#922b21"/>
+            <ellipse cx="62" cy="62" rx="5" ry="3" fill="#f1948a" transform="rotate(-45 62 62)"/>
+            <line x1="74" y1="74" x2="44" y2="44" stroke="#7b241c" stroke-width="1" opacity="0.4"/>
+            <circle cx="44" cy="44" r="2" fill="#c0392b"/>
+            <ellipse cx="56" cy="74" rx="6" ry="2.5" fill="#1e8449" transform="rotate(-30 56 74)" opacity="0.7"/>
+            <ellipse cx="74" cy="56" rx="6" ry="2.5" fill="#1e8449" transform="rotate(-60 74 56)" opacity="0.7"/>
+          </g>
+        </svg>
+
+        <h1>Happy 1st Anniversary, Moshii! 💌</h1>
+        <p>
+          Happy 1st Anniversary, my dearest Moshii. I can't believe it's already been a year 
+          since we started this journey. Looking back, I am overwhelmed with gratitude that I 
+          have you by my side. Even though we are miles apart and separated by distance, my heart 
+          has never felt closer to anyone else but you. Thank you for making this past year the 
+          most beautiful chapter of my life.
+        </p>
+        <p>
+          I want to thank you for everything — for the constant love, the endless care, and for 
+          never getting tired of understanding me, even when things get difficult. I know that 
+          being in a long-distance relationship is far from easy. There are days when we both feel 
+          exhausted and drained by the distance, the longing, and the struggles that come with it. 
+          Yet, despite how tired we get, I am so proud of us because we never give up. Thank you 
+          for choosing me every single day, just as I continue to choose you.
+        </p>
+        <p>
+          Moshii, you are my safe space and my greatest motivation. Thank you for being patient 
+          with me whenever I'm not at my best and for reminding me that as long as we have each 
+          other, we can get through anything. I promise to keep working hard for us, to keep loving 
+          you through the distance, and to keep holding onto the hope that soon, the miles between 
+          us won't matter anymore — because we will finally be together.
+        </p>
+        <div class="letter-sign">I love you more than words can say. Here's to many more years of choosing each other, no matter what. 💋</div>
+      </div>
+
+      <div class="pol-row">
+        <div class="pol-letter"><img src="photoletter1.jpg" alt=""></div>
+        <div class="pol-letter"><img src="photoletter2.jpg" alt=""></div>
+        <div class="pol-letter"><img src="photoletter3.jpg" alt=""></div>
+      </div>
+    </div>
+  </div>
+  <button class="back-btn" onclick="goHub()">← Back</button>
+</div>
+<!-- ============================================================
+       PAGE 6 — CORKBOARD / MEMORIES
+       ============================================================ -->
+  <div class="section" id="page-corkboard">
+    <div class="cork-bg"></div>
+    <img src="corkkk.png" alt="Corkboard" class="cork-board-img">
+    <div class="cork-overlay"></div>
+    <div class="cork-content">
+      <h2 class="cork-heading">Our Memories 📷</h2>
+    </div>
+    <button class="back-btn" onclick="goHub()">← Back</button>
+  </div>
+
+  <audio id="bg-music" loop>
+  <source src="panalangin.mp3" type="audio/mpeg">
+</audio>
+
+  <script src="twentieth.js"></script>
+</body>
+</html>

@@ -1,0 +1,837 @@
+/* ============================================================
+   matthew.css
+   Image files expected in the same folder:
+   — bg-password.jpg       password page background
+   — bg-hub.jpg            picnic basket hub background
+   — hub-cassette.png      clickable cassette image on hub
+   — hub-flowers.png       clickable flowers image on hub
+   — hub-envelope.png      clickable envelope image on hub
+   — hub-camera.png        clickable camera image on hub
+   — bg-song.jpg / cassette.jpg   song page background
+   — photo-song-1.jpg      song page polaroid 1
+   — photo-song-2.jpg      song page polaroid 2
+   — love-pol-1.jpg        love page polaroid 1
+   — love-pol-2.jpg        love page polaroid 2
+   — bg-envelope.jpg       envelope closed page
+   — bg-letter.jpg         letter page background
+   — photo-letter-1.jpg    letter polaroid 1
+   — photo-letter-2.jpg    letter polaroid 2
+   — photo-letter-3.jpg    letter polaroid 3
+   — bg-corkboard.jpg      corkboard page background
+   — mem1.jpg … mem6.jpg   corkboard memory photos
+   ============================================================ */
+
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600;700&family=Caveat:wght@400;600&family=Lato:wght@300;400&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+  background: #111;
+  font-family: 'Lato', sans-serif;
+}
+
+/* ============================================================
+   SECTION BASE
+   ============================================================ */
+.section {
+  display: none;
+  width: 100%;
+  height: 100vh;
+  position: relative;
+  overflow: hidden;
+}
+
+.section.active {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.fade-in {
+  animation: fadeIn 0.55s ease;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+/* ============================================================
+   PAGE 1 — PASSWORD
+   ============================================================ */
+#page-password {
+  background: #1a0808;
+}
+
+.pw-bg {
+  position: absolute;
+  inset: 0;
+  background: url('passcodebgg.jpg') center / cover no-repeat;
+  opacity: 0.42;
+}
+
+.passcode-ui {
+  position: relative;
+  z-index: 2;
+  background: linear-gradient(160deg, rgba(80, 10, 10, 0.55), rgba(20, 5, 5, 0.60));
+  border: 1px solid rgba(255, 180, 180, 0.2);
+  border-radius: 20px;
+  padding: 20px 28px 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  backdrop-filter: blur(20px);
+  width: fit-content;
+  box-shadow: 0 0 40px rgba(200, 50, 50, 0.25), 0 8px 32px rgba(0,0,0,0.4);
+  margin-top: 80px;
+}
+
+.passcode-ui::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 20%;
+  width: 60%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(255, 180, 180, 0.6), transparent);
+  border-radius: 50%;
+}
+
+.pw-label {
+  font-family: 'Dancing Script', cursive;
+  font-size: 18px;
+  letter-spacing: 2px;
+  color: rgba(255, 210, 210, 0.9);
+  text-shadow: 0 0 10px rgba(255, 100, 100, 0.4);
+}
+
+.pw-dots {
+  display: flex;
+  gap: 12px;
+}
+
+.dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: rgba(255, 150, 150, 0.1);
+  border: 1.5px solid rgba(255, 180, 180, 0.4);
+  transition: background 0.2s, box-shadow 0.2s;
+}
+
+.dot.filled {
+  background: #ffaaaa;
+  box-shadow: 0 0 10px rgba(255, 120, 120, 0.9);
+}
+
+.keypad {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 7px;
+}
+
+.key {
+  width: 52px;
+  height: 38px;
+  border-radius: 10px;
+  background: linear-gradient(135deg, rgba(180, 40, 40, 0.25), rgba(100, 10, 10, 0.35));
+  border: 1px solid rgba(255, 150, 150, 0.18);
+  color: rgba(255, 220, 220, 0.95);
+  font-size: 16px;
+  font-weight: 300;
+  font-family: 'Lato', sans-serif;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.15s, transform 0.1s, box-shadow 0.15s;
+  user-select: none;
+}
+
+.key:hover {
+  background: linear-gradient(135deg, rgba(220, 60, 60, 0.5), rgba(150, 20, 20, 0.55));
+  border-color: rgba(255, 180, 180, 0.35);
+  box-shadow: 0 0 14px rgba(220, 80, 80, 0.4);
+  transform: scale(1.06);
+}
+
+.key:active {
+  transform: scale(0.94);
+}
+
+.err-msg {
+  font-family: 'Dancing Script', cursive;
+  font-size: 14px;
+  color: rgba(255, 140, 140, 0.9);
+  min-height: 16px;
+  letter-spacing: 1px;
+}
+
+/* ============================================================
+   PAGE 2 — HUB (PICNIC BASKET)
+   ============================================================ */
+#page-hub {
+  background: #1c2d12;
+}
+
+.hub-bg {
+  position: absolute;
+  inset: 0;
+  background: url('picnicbasket.png') center / cover no-repeat;
+}
+
+.hub-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.18);
+}
+
+.hub-options {
+  position: relative;
+  z-index: 3;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0px 0px;
+  padding: 0px;
+  max-width: 460px;
+  width: 100%;
+}
+
+.hub-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+#opt-cassette { transform: rotate(-6deg) translateY(4px); }
+#opt-flowers  { transform: rotate(5deg)  translateY(4px); }
+#opt-envelope { transform: rotate(4deg)  translateY(-4px); }
+#opt-camera   { transform: rotate(-5deg) translateY(-4px); }
+
+#opt-cassette:hover,
+#opt-flowers:hover,
+#opt-envelope:hover,
+#opt-camera:hover {
+  transform: rotate(0deg) translateY(-8px) scale(1.07);
+  z-index: 10;
+}
+
+.hub-item:hover .hub-item-caption {
+  color: #fff;
+}
+
+.hub-item img {
+  width: 100%;
+  max-width: 280px;
+  height: 220px;
+  object-fit: contain;
+  display: block;
+  filter: drop-shadow(0 8px 18px rgba(0,0,0,0.45));
+}
+
+.hub-item-ph {
+  width: 190px;
+  height: 160px;
+  border-radius: 14px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  border: 2px dashed rgba(255,255,255,0.35);
+  backdrop-filter: blur(6px);
+  transition: border-color 0.15s, background 0.15s;
+}
+
+.hub-item:hover .hub-item-ph {
+  border-color: rgba(255,255,255,0.7);
+  background: rgba(255,255,255,0.1);
+}
+
+.hub-item-ph--cassette { background: rgba(80, 50, 10, 0.55); }
+.hub-item-ph--flowers  { background: rgba(40, 80, 10, 0.55); }
+.hub-item-ph--envelope { background: rgba(80, 20, 20, 0.55); }
+.hub-item-ph--camera   { background: rgba(20, 40, 70, 0.55); }
+
+.ph-icon { font-size: 38px; }
+
+.ph-label {
+  font-family: 'Lato', sans-serif;
+  font-size: 10px;
+  color: rgba(255,255,255,0.45);
+  letter-spacing: 0.5px;
+  text-align: center;
+}
+
+.hub-item-caption {
+  font-family: 'Dancing Script', cursive;
+  font-size: clamp(15px, 2.2vw, 20px);
+  color: rgba(255, 255, 255, 0.88);
+  text-shadow: 0 2px 8px rgba(0,0,0,0.6);
+  transition: color 0.15s;
+}
+
+/* ============================================================
+   PAGE 3 — SONG
+   ============================================================ */
+#page-song {
+  background: #1a2e0a;
+}
+
+.song-bg {
+  position: absolute;
+  inset: 0;
+  background: url('picnicbasket.png') center / cover no-repeat;
+}
+
+.song-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.25);
+}
+
+.song-vinyl {
+  width: 220px;
+  height: auto;
+  flex-shrink: 0;
+  margin-right: -130px;
+  z-index: 4;
+  animation: spin 6s linear infinite;
+}
+
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+
+.song-content {
+  position: relative;
+  z-index: 3;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 20px 5% 60px;
+  gap: 24px;
+}
+
+.song-title {
+  font-family: 'Dancing Script', cursive;
+  font-size: clamp(26px, 4vw, 52px);
+  color: #fff;
+  text-shadow: 0 2px 12px rgba(0, 0, 0, 0.5);
+  text-align: center;
+}
+
+.song-row {
+  display: flex;
+  gap: 28px;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.yt-wrap {
+  background: #000;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 8px 36px rgba(0, 0, 0, 0.7);
+  flex-shrink: 0;
+  margin-left: 60px;
+}
+
+.yt-fallback {
+  width: 380px;
+  height: 214px;
+  background: #111;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  gap: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.yt-fallback .play-btn {
+  width: 58px;
+  height: 58px;
+  background: red;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.yt-fallback .play-btn svg {
+  width: 26px;
+  fill: #fff;
+  margin-left: 5px;
+}
+
+.yt-fallback p {
+  color: #ccc;
+  font-size: 12px;
+  text-align: center;
+  padding: 0 20px;
+}
+
+.yt-fallback small {
+  color: #777;
+}
+
+.polaroid-col {
+  display: flex;
+  flex-direction: column;
+  gap: 0px;
+  position: relative;
+}
+
+.polaroid {
+  background: #fff;
+  padding: 7px 7px 26px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.5);
+  width: 130px;
+  position: relative;
+}
+
+.polaroid--1 { transform: rotate(6deg) translateX(10px); z-index: 2; }
+.polaroid--2 { transform: rotate(-4deg) translateX(-6px) translateY(-12px); z-index: 1; }
+
+.polaroid img {
+  width: 100%;
+  height: 140px;
+  object-fit: cover;
+  display: block;
+}
+
+.pol-ph {
+  width: 100%;
+  height: 140px;
+  background: #ddd;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 9px;
+  color: #888;
+  text-align: center;
+  padding: 4px;
+}
+
+/* ============================================================
+   PAGE 4 — LOVE REASONS (HEART LOCKET)
+   ============================================================ */
+#page-love {
+  background: #1a2e0a;
+}
+
+.love-bg {
+  position: absolute;
+  inset: 0;
+  background: url('picnicbasket.png') center / cover no-repeat;
+}
+
+.love-content {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 16px 2% 64px;
+  gap: 18px;
+  overflow-y: auto;
+}
+
+.love-heading {
+  font-family: 'Dancing Script', cursive;
+  font-size: clamp(22px, 3.5vw, 40px);
+  color: #fff;
+  text-shadow: 0 2px 12px rgba(0,0,0,0.6);
+  text-align: center;
+}
+
+.love-locket-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  width: 100%;
+  max-width: 1000px;
+}
+
+.love-reasons {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  flex: 1;
+  min-width: 0;
+  max-width: 280px;
+}
+
+.love-card {
+  background: rgba(120, 20, 20, 0.82);
+  border: 1px solid rgba(255,255,255,0.18);
+  border-radius: 8px;
+  padding: 14px 18px;
+  font-family: 'Caveat', cursive;
+  font-size: clamp(15px, 1.8vw, 19px);
+  color: #fff;
+  line-height: 1.5;
+  backdrop-filter: blur(4px);
+  box-shadow: 0 3px 12px rgba(0,0,0,0.35);
+}
+
+.love-reasons--left .love-card { text-align: right; }
+.love-reasons--right .love-card { text-align: left; }
+
+.locket-img {
+  width: 450px;
+  height: auto;
+  flex-shrink: 0;
+  filter: drop-shadow(0 8px 30px rgba(0,0,0,0.6));
+}
+
+/* ============================================================
+   PAGE 5a — ENVELOPE (CLOSED)
+   ============================================================ */
+#page-envelope {
+  background: #0e0808;
+}
+
+.env-bg {
+  position: absolute;
+  inset: 0;
+  background: url('picnicbasket.png') center / cover no-repeat;
+}
+
+.env-hint {
+  position: absolute;
+  bottom: 56px;
+  left: 50%;
+  transform: translateX(-50%);
+  color: rgba(255, 255, 255, 0.85);
+  z-index: 3;
+  font-family: 'Dancing Script', cursive;
+  font-size: 20px;
+  text-shadow: 0 1px 6px rgba(0, 0, 0, 0.6);
+  animation: pulse 2s infinite;
+  pointer-events: none;
+  white-space: nowrap;
+}
+
+.env-envelope-wrap {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 600px;
+  margin-top: -180px;
+}
+
+.env-envelope {
+  position: relative;
+  z-index: 2;
+  width: 600px;
+  height: auto;
+  cursor: pointer;
+  filter: drop-shadow(0 12px 30px rgba(0,0,0,0.5));
+  transition: transform 0.2s ease;
+}
+
+.env-envelope:hover {
+  transform: scale(1.04) rotate(-1deg);
+}
+
+/* ============================================================
+   PAGE 5b — LETTER (OPEN)
+   ============================================================ */
+#page-letter {
+  background: #6a0a0a;
+}
+
+.letter-outer {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  background: url('bg-letter.jpg') top center / cover no-repeat;
+}
+
+/* Scattered background petals */
+.letter-petals {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  overflow: hidden;
+}
+
+.petal {
+  position: absolute;
+  font-size: 22px;
+  opacity: 0;
+  animation: petalDrift 8s ease-in-out infinite;
+}
+
+.p1  { left: 5%;   animation-delay: 0s;    font-size: 18px; }
+.p2  { left: 15%;  animation-delay: 1.2s;  font-size: 24px; }
+.p3  { left: 28%;  animation-delay: 2.4s;  font-size: 16px; }
+.p4  { left: 40%;  animation-delay: 0.6s;  font-size: 20px; }
+.p5  { left: 55%;  animation-delay: 3s;    font-size: 18px; }
+.p6  { left: 65%;  animation-delay: 1.8s;  font-size: 26px; }
+.p7  { left: 75%;  animation-delay: 0.3s;  font-size: 16px; }
+.p8  { left: 85%;  animation-delay: 2.1s;  font-size: 22px; }
+.p9  { left: 92%;  animation-delay: 3.6s;  font-size: 18px; }
+.p10 { left: 48%;  animation-delay: 4.2s;  font-size: 20px; }
+
+@keyframes petalDrift {
+  0%   { transform: translateY(-40px) rotate(0deg);   opacity: 0;   }
+  10%  { opacity: 0.55; }
+  80%  { opacity: 0.45; }
+  100% { transform: translateY(105vh) rotate(360deg); opacity: 0;   }
+}
+
+.letter-scroll {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px 16px 80px;
+}
+
+.letter-scroll::-webkit-scrollbar { width: 4px; }
+.letter-scroll::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.3);
+  border-radius: 4px;
+}
+
+.letter-card {
+  background: rgba(255, 252, 248, 0.96);
+  max-width: 720px;
+  width: 95%;
+  padding: 38px 52px;
+  margin: 0 auto;
+  box-shadow: 0 8px 40px rgba(0, 0, 0, 0.5);
+  font-family: 'Caveat', cursive;
+  position: relative;
+  overflow: visible;
+}
+
+.letter-card h1 {
+  font-family: 'Dancing Script', cursive;
+  font-size: clamp(20px, 4vw, 32px);
+  color: #7a0a0a;
+  text-align: center;
+  margin-bottom: 18px;
+}
+
+.letter-card p {
+  font-size: clamp(15px, 2.2vw, 19px);
+  color: #2a1414;
+  line-height: 1.75;
+  margin-bottom: 14px;
+}
+
+.letter-sign {
+  text-align: center;
+  margin-top: 24px;
+  font-size: clamp(16px, 2.5vw, 22px);
+  color: #5a0a0a;
+}
+
+/* Floral corners */
+.letter-corner {
+  position: absolute;
+  width: 80px;
+  height: 80px;
+  pointer-events: none;
+}
+.letter-corner--tl { top: 0;    left: 0; }
+.letter-corner--tr { top: 0;    right: 0; }
+.letter-corner--bl { bottom: 0; left: 0; }
+.letter-corner--br { bottom: 0; right: 0; }
+
+.pol-row {
+  display: flex;
+  justify-content: center;
+  gap: 14px;
+  flex-wrap: nowrap;
+  margin: 20px auto;
+  max-width: 520px;
+}
+
+.pol-letter {
+  background: #fff;
+  padding: 8px 8px 14px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.35);
+  flex: 1;
+  max-width: 150px;
+}
+
+.pol-letter img {
+  width: 100%;
+  height: 160px;
+  object-fit: cover;
+  display: block;
+}
+
+.pol-letter-ph {
+  width: 115px;
+  height: 88px;
+  background: #ddd;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 9px;
+  color: #999;
+}
+
+/* ============================================================
+   PAGE 6 — CORKBOARD / MEMORIES
+   ============================================================ */
+#page-corkboard {
+  background: #1a250a;
+}
+
+.cork-bg {
+  position: absolute;
+  inset: 0;
+  background: url('picnicbasket.png') center / cover no-repeat;
+}
+
+.cork-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.10);
+}
+
+.cork-content {
+  position: absolute;
+  z-index: 2;
+  top: 0;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 18px;
+}
+
+.cork-heading {
+  font-family: 'Dancing Script', cursive;
+  font-size: clamp(22px, 3.5vw, 38px);
+  color: #fff;
+  text-shadow: 0 2px 12px rgba(0,0,0,0.6);
+  text-align: center;
+}
+
+.cork-board-img {
+  position: absolute;
+  z-index: 1;
+  width: 75%;
+  height: auto;
+  top: 45%;
+  transform: translateY(-50%);
+  filter: drop-shadow(0 12px 30px rgba(0,0,0,0.5));
+  image-rendering: -webkit-optimize-contrast;
+}
+
+/* ============================================================
+   BACK BUTTON (shared)
+   ============================================================ */
+.back-btn {
+  position: absolute;
+  bottom: 18px;
+  right: 18px;
+  z-index: 10;
+  background: rgba(80, 14, 14, 0.8);
+  border: 1.5px solid rgba(255, 255, 255, 0.28);
+  color: #fff;
+  font-family: 'Dancing Script', cursive;
+  font-size: 18px;
+  padding: 8px 22px;
+  border-radius: 24px;
+  cursor: pointer;
+  backdrop-filter: blur(6px);
+  transition: background 0.2s, transform 0.15s;
+}
+
+.back-btn:hover {
+  background: rgba(160, 30, 30, 0.9);
+  transform: scale(1.04);
+}
+
+/* ============================================================
+   RESPONSIVE — 600px
+   ============================================================ */
+@media (max-width: 600px) {
+
+  /* Password */
+  .passcode-ui { min-width: 230px; padding: 22px 20px 26px; }
+  .key { width: 46px; height: 46px; font-size: 16px; }
+  .dot { width: 22px; height: 22px; }
+
+  /* Hub */
+  .hub-options { gap: 8px 16px; padding: 16px; max-width: 100%; }
+  .hub-item img { max-width: 150px; height: 120px; }
+  #opt-cassette { transform: rotate(-4deg) translateY(2px); }
+  #opt-flowers  { transform: rotate(3deg)  translateY(2px); }
+  #opt-envelope { transform: rotate(3deg)  translateY(-2px); }
+  #opt-camera   { transform: rotate(-3deg) translateY(-2px); }
+
+  /* Song */
+  .song-row { flex-direction: column; gap: 16px; }
+  .yt-fallback { width: 300px; height: 170px; }
+  .song-vinyl { width: 140px; margin-right: 0; margin-bottom: -60px; }
+  .yt-wrap { margin-left: 0; }
+  .polaroid-col { flex-direction: row; }
+  .polaroid--1 { transform: rotate(6deg); }
+  .polaroid--2 { transform: rotate(-4deg) translateY(0); }
+
+  /* Love */
+  .love-locket-row { flex-direction: column; gap: 16px; }
+  .locket-img { width: 180px; }
+  .love-reasons { flex-direction: row; flex-wrap: wrap; max-width: 100%; justify-content: center; }
+  .love-reasons--left .love-card,
+  .love-reasons--right .love-card { text-align: center; }
+
+  /* Envelope */
+  .env-envelope-wrap { width: 220px; }
+  .env-envelope { width: 220px; }
+
+  /* Letter */
+  .letter-card { padding: 24px 20px; }
+  .letter-corner { width: 50px; height: 50px; }
+  .pol-row { flex-wrap: wrap; max-width: 100%; }
+  .pol-letter { max-width: 120px; }
+
+  /* Corkboard */
+  .cork-board-img { width: 95%; top: 50%; }
+}
+
+/* ============================================================
+   RESPONSIVE — 380px
+   ============================================================ */
+@media (max-width: 380px) {
+  .hub-item-ph { width: 120px; height: 100px; }
+  .hub-item img { max-width: 120px; height: 100px; }
+}
